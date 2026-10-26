@@ -1202,7 +1202,15 @@ static float b2GetJointConstraintTorque( b2World* world, b2Joint* joint )
 		case b2_motorJoint:
 			return b2GetMotorJointTorque( world, base );
 
+		case b2_moverJoint:
+			// the mover joint only drives linear velocity
+			return 0.0f;
+
 		case b2_filterJoint:
+			return 0.0f;
+
+		case b2_pogoJoint:
+			// the pogo joint pushes along its normal, like a distance joint
 			return 0.0f;
 
 		case b2_prismaticJoint:
@@ -1284,7 +1292,13 @@ float b2Joint_GetLinearSeparation( b2JointId jointId )
 		case b2_motorJoint:
 			return 0.0f;
 
+		case b2_moverJoint:
+			return 0.0f;
+
 		case b2_filterJoint:
+			return 0.0f;
+
+		case b2_pogoJoint:
 			return 0.0f;
 
 		case b2_prismaticJoint:
@@ -1375,7 +1389,13 @@ float b2Joint_GetAngularSeparation( b2JointId jointId )
 		case b2_motorJoint:
 			return 0.0f;
 
+		case b2_moverJoint:
+			return 0.0f;
+
 		case b2_filterJoint:
+			return 0.0f;
+
+		case b2_pogoJoint:
 			return 0.0f;
 
 		case b2_prismaticJoint:
