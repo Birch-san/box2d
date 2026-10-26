@@ -1124,7 +1124,9 @@ b2PlaneResult b2CollideMover( const b2Capsule* mover, const b2Shape* shape, b2Tr
 		return result;
 	}
 
+	// The mover was collided in the shape frame, bring the plane and the point back to the query frame
 	result.plane.normal = b2RotateVector( transform.q, result.plane.normal );
+	result.point = b2TransformPoint( transform, result.point );
 	return result;
 }
 

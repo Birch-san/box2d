@@ -1010,7 +1010,8 @@ b2PlaneResult b2CollideMoverAndCircle( const b2Capsule* mover, const b2Circle* s
 		b2Plane plane = { distanceOutput.normal, totalRadius - distanceOutput.distance };
 		return (b2PlaneResult){
 			.plane = plane,
-			.point = distanceOutput.pointA,
+			// pointA is on the shape core, offset it to the rounded surface
+			.point = b2MulAdd( distanceOutput.pointA, shape->radius, distanceOutput.normal ),
 			.hit = true,
 		};
 	}
@@ -1036,7 +1037,8 @@ b2PlaneResult b2CollideMoverAndCapsule( const b2Capsule* mover, const b2Capsule*
 		b2Plane plane = { distanceOutput.normal, totalRadius - distanceOutput.distance };
 		return (b2PlaneResult){
 			.plane = plane,
-			.point = distanceOutput.pointA,
+			// pointA is on the shape core, offset it to the rounded surface
+			.point = b2MulAdd( distanceOutput.pointA, shape->radius, distanceOutput.normal ),
 			.hit = true,
 		};
 	}
@@ -1062,7 +1064,8 @@ b2PlaneResult b2CollideMoverAndPolygon( const b2Capsule* mover, const b2Polygon*
 		b2Plane plane = { distanceOutput.normal, totalRadius - distanceOutput.distance };
 		return (b2PlaneResult){
 			.plane = plane,
-			.point = distanceOutput.pointA,
+			// pointA is on the shape core, offset it to the rounded surface
+			.point = b2MulAdd( distanceOutput.pointA, shape->radius, distanceOutput.normal ),
 			.hit = true,
 		};
 	}
